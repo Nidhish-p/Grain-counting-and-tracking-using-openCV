@@ -18,6 +18,60 @@ This project demonstrates skills in **image preprocessing, contour analysis, mor
 
 ---
 
+## 🔬 Approach
+
+The workflow followed for this project:
+
+1. **Preprocessing & Background Removal**
+   - Resized the input image for efficiency.
+   - Converted to **HSV color space** and applied a mask to remove the blue background, isolating only the rice grains.
+
+2. **Image Enhancement**
+   - Converted to grayscale.
+   - Applied **Gaussian Blur** to smooth noise.
+   - Used **Otsu’s Thresholding** to separate grains from the background.
+
+3. **Contour Detection & Classification**
+   - Extracted contours representing grains.
+   - Classified them into:
+     - **Isolated grains** (small, well-defined contours).
+     - **Touching grains** (larger contours that likely represent multiple grains).
+
+4. **Grain Estimation**
+   - Calculated the **average area** of isolated grains.
+   - Estimated the number of grains in touching clusters by dividing contour area by average isolated grain area.
+
+5. **Visualization**
+   - **Yellow contours** = isolated grains.
+   - **Green contours** = touching grain clusters.
+
+This pipeline ensures robust grain counting, even when grains overlap or stick together.
+
+---
+
+
+## Sample workflow examples
+
+Below are the key steps and outputs from the rice grain counting process:
+
+### 1. Original Image
+<img src="input.png" alt="Original Rice Image" width="500" height="700"/>
+
+### 2. Processed / Thresholded Image
+<img src="processed.png" alt="Thresholded Rice Image" width="500" height="700"/>
+
+### 3. Final Output with Count
+<img src="output.png" alt="Final Grain Count Output" width="500" height="700"/>
+
+---
+## 📊 Results
+
+| Category                  | Count |
+|---------------------------|-------|
+| Isolated Grains           | **59** |
+| Touching Grains (Estimated) | **51** |
+| **Total Grains**          | **110** |
+
 ## 🛠️ Tools & Technologies
 
 - **Python**
@@ -28,30 +82,7 @@ This project demonstrates skills in **image preprocessing, contour analysis, mor
 
 ---
 
-## ⚙️ Workflow
 
-1. **Preprocessing** – Applied grayscale conversion, thresholding, and filtering to clean the background.  
-2. **Segmentation** – Used contour detection and morphological operations to isolate grains.  
-3. **Dealing with Joined Grains** – Experimented with distance transforms, watershed segmentation, and custom logic to **separate touching grains**.  
-4. **Counting & Validation** – Counted grains and validated results visually with bounding boxes/contours.  
-5. **Iterative Refinement** – Fine-tuned parameters to improve **accuracy and consistency**.
-
----
-
-## Sample Workflow & Results
-
-Below are the key steps and outputs from the rice grain counting process:
-
-### 1. Original Image
-<img src="images/original_image.jpg" alt="Original Rice Image" width="500"/>
-
-### 2. Processed / Thresholded Image
-<img src="images/thresholded_image.jpg" alt="Thresholded Rice Image" width="500"/>
-
-### 3. Final Output with Count
-<img src="images/output_count.jpg" alt="Final Grain Count Output" width="500"/>
-
----
 
 ## 🚀 Key Highlights
 
@@ -62,6 +93,4 @@ Below are the key steps and outputs from the rice grain counting process:
 - Project can be extended for **quality control in agriculture/food processing industries**.  
 
 ---
-
-## 📂 Project Structure
 
